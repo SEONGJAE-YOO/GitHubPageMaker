@@ -2665,7 +2665,7 @@ plt.imshow(wordcloud)
 plt.axis("off")
 plt.show()
 ```
-![output_45_0](./image/output_45_0.png)
+![coupang3](C:/blogmaker/_posts/python/image/coupang3.png)
     
 
   
