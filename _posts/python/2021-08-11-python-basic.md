@@ -2667,4 +2667,4 @@ plt.show()
 
 ```
 
-{% include lightbox.html src="images/close.png" data="group" %}
+{% include lightbox.html src="images/coupang3.png" data="group" %}
