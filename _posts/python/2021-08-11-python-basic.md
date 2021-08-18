@@ -2667,6 +2667,4 @@ plt.show()
 
 ```
 
-| ![coupang3.png](_posts/python/image/coupang3.png) |
-|:--:|
-| *Space* |
+{% include lightbox.html src="images/close.png" data="group" %}
