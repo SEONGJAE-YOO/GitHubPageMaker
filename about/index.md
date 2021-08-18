@@ -8,4 +8,4 @@ class: page-template
 subclass: 'post page'
 ---
 
-마이블로그 및 빅데이터 공부alldd
+마이블로그 및 빅데이터 공부all!!!

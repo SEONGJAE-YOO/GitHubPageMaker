@@ -2,33 +2,24 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.6.6
-
+- 2.6.6
 install:
-  # Install Jekyll and dependencies
-  - bundle install
-
+- bundle install
 before_script:
-  - git config --global user.email "yuseong12345@naver.com"
-  - git config --global user.name "SEONGJAE-YOO"
-
-script: bundle exec rake site:deploy --quiet #--trace
-
-# Generate your secure token with the travis gem:
-# get Github token from your Travis CI profile page
-# gem install travis
-# GH_TOKEN from https://github.com/settings/tokens
-# travis encrypt 'GIT_NAME="YOUR_USERNAME" GIT_EMAIL="YOUR_EMAIL" GH_TOKEN=YOUR_TOKEN'
+- git config --global user.email "yuseong12345@naver.com"
+- git config --global user.name "SEONGJAE-YOO"
+script: bundle exec rake site:deploy --quiet
 env:
   global:
-    secure: "ocFNGpNN1rEPoHkdrR9TNFqR7eI5KQsW0YMioD0lhepBk5rJaaMawoclet+zybRLymIroPlO6vnbafVW
-r5aLGTImRVvlxUAICUljZZB7UW9G5Kc4kvmCpeQd06B52KUwbfCF3gy6B6PF1p/XQXu2fmZxsTr160kOAdwJpSMebQN
-0OBMfTWEuZR47IIzEfdWhFRGLYroHEffU63u7+I/VLGTrQPiXAJ4ajiR3z08QBdSAdOBRF+OOFWpPJbjuYOUbOlZiPg
-1HAm/YAMLc15ooHISqkZYMWOs5BOmKJowcExpN3wksxNgd8xmZnRlyqcrnnvebzl/u8tzYeVHQVQSVguhQ/0zZ5q/MP
-hKK99aqcPcWqFFzurFPPm4ZQia5XbYi0rKnvUCbBQHvVKFkRiMkk+OphAYNu7K+ZYmHLXjtnvNJWT5YhpE/UUkOv14X
-mB3iG8WJWGqjeyxuyoFv5pev6L10kIGZgNTYPQRdRJ8meVMOe4CVuBCvCVYLeruk8Mg9EgkZsBpv4qjw+X/VK1VLk4U
-wFblNOPF5d7Q6Pj3HUfPaIuGfqMapTt7b57CtL8p8yPHFc5dKYBr5AsWAysQirAWyjfll40i41GBZ+l2pl3HE8aqG3N
-/eqlxQL8yAxApAW6jOO7NFrn7CqzBx1t3mFphob+5lhZqDpxAe3GUryA4="
+  - secure: ocFNGpNN1rEPoHkdrR9TNFqR7eI5KQsW0YMioD0lhepBk5rJaaMawoclet+zybRLymIroPlO6vnbafVW
+      r5aLGTImRVvlxUAICUljZZB7UW9G5Kc4kvmCpeQd06B52KUwbfCF3gy6B6PF1p/XQXu2fmZxsTr160kOAdwJpSMebQN
+      0OBMfTWEuZR47IIzEfdWhFRGLYroHEffU63u7+I/VLGTrQPiXAJ4ajiR3z08QBdSAdOBRF+OOFWpPJbjuYOUbOlZiPg
+      1HAm/YAMLc15ooHISqkZYMWOs5BOmKJowcExpN3wksxNgd8xmZnRlyqcrnnvebzl/u8tzYeVHQVQSVguhQ/0zZ5q/MP
+      hKK99aqcPcWqFFzurFPPm4ZQia5XbYi0rKnvUCbBQHvVKFkRiMkk+OphAYNu7K+ZYmHLXjtnvNJWT5YhpE/UUkOv14X
+      mB3iG8WJWGqjeyxuyoFv5pev6L10kIGZgNTYPQRdRJ8meVMOe4CVuBCvCVYLeruk8Mg9EgkZsBpv4qjw+X/VK1VLk4U
+      wFblNOPF5d7Q6Pj3HUfPaIuGfqMapTt7b57CtL8p8yPHFc5dKYBr5AsWAysQirAWyjfll40i41GBZ+l2pl3HE8aqG3N
+      /eqlxQL8yAxApAW6jOO7NFrn7CqzBx1t3mFphob+5lhZqDpxAe3GUryA4=
+  - secure: voQonCY6RYJzGqmn/hd+r8h1/LgrxWGqkVUMSB5Cj9YjrRDj2P18QA9JXHj869c1crZTEWIaDhPSC536ZlhJnn2u1QDV8PX2MzADGqic9lwt4PkqldreWnQ+JvH6CszMQmXhq0ZE1y9Zi00Gpaaaw6CtvrfFALUKSFps+KDVzF92UG3xSdo8Gjg0xdcCHclgzG5RJ6JT6UzY4hM/8wt8yUbV4zzBSuNPZsqDsVmPxaottfJurJK4SfFaRRPw5Tq5UqThBTp79SOGw/cdHZClL93xsnKLa7XoAHsF2lxnvNd6DfDWN0jZKoQGo6yYPiAkck0i3IEAoui8xCidfs1Hg4f5LC2KLi64yFxXX1O5l+jFdbuP1L3R9ff3UR4a7ynJMYwBPxClkMoq4PRhPrf2OIUHlhEhAhX0c+xvAEq32tBXT73ovjItJVbIUpudTQuvvTQsXbNw8txtX0StIJx4eOH1pwdv09huT5Hz72rIzWOikSp5AeKNpIbHDN5p7zKjrJe5wXBFTZo4ot36fka8rDBebNcxFw2G7d1fijZZ9ZCyasRjHt9pNj4XCmCKqGjge/FG1wpGd6qko9hgukX1TBruoefEEO2B7EvvBgYMGzDILZp+egkQkscYPWxH/XGz5gEktQ9+2r3yroSZf+N3arwMAsC799l34K18YAfwCX8=
 branches:
   only:
-    - master
+  - master
