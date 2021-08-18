@@ -2664,8 +2664,9 @@ plt.figure( figsize=(12, 6) )
 plt.imshow(wordcloud)
 plt.axis("off")
 plt.show()
-```
-![coupang3](https://github.com/SEONGJAE-YOO/GitHubPageMaker/tree/master/_posts/python/image/coupang3.png)
-    
 
-  
+```
+
+| ![coupang3.png](_posts/python/image/coupang3.png) |
+|:--:|
+| *Space* |
