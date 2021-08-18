@@ -1,19 +1,5 @@
-<!-- _includes/image.html -->
-<figure>
-    {% if include.url %}
-    <a href="{{ include.url }}">
-        {% endif %}
-        <img
-                {% if include.srcabs %}
-                src="{{ include.srcabs }}"
-                {% else %}
-                src="{{ site.baseurl }}/assets/images/{{ include.src }}"
-                {% endif %}
-                alt="{{ include.alt }}">
-        {% if include.url %}
-    </a>
-    {% endif %}
-    {% if include.caption %}
-    <figcaption>{{ include.caption }}</figcaption>
-    {% endif %}
-</figure>
+&lt;p align="center"&gt;
+&lt;img alt="img-name" src="/path/image-name.png" width="300"&gt;
+&lt;br&gt;
+&lt;em&gt;caption&lt;/em&gt;
+&lt;/p&gt;

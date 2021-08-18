@@ -1246,7 +1246,7 @@ plt.show()
 
 ```
 
-![png](C:\blogmaker\_posts\python\image\output_26_0.png)
+![coupang1](./img/coupang1.png)
 
 
 
@@ -2641,7 +2641,7 @@ showGraph(wordInfo)
     필름 : 137
     보호 : 119
 
-![png](C:\blogmaker\_posts\python\image\output_44_1.png)
+![coupang2](./img/coupang2.png)
 
 
 
@@ -2666,3 +2666,4 @@ plt.axis("off")
 plt.show()
 
 ```
+![coupang3](./img/coupang3.png)
