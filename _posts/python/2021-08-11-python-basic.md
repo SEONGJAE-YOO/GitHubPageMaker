@@ -15,7 +15,7 @@ priority : 1.0
 ---
 {% include python-table-of-contents.html %}
 
-
+ 
 ```python
 import matplotlib.pyplot as plt
 from matplotlib import style
