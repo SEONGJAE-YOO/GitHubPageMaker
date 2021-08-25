@@ -7,7 +7,7 @@ title: Series 데이터 변경 - 슬라이싱하기
 tags: [python]  
 class: post-template
 subclass: 'post tag-python'
-author: SeongJae Yu
+author: SeongJae Yu  
 sitemap :
 changefreq : daily
 priority : 1.0
