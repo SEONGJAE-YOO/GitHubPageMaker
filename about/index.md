@@ -8,4 +8,4 @@ class: page-template
 subclass: 'post page'
 ---
 
-마이블로그 및 빅데이터 공부all!!!!
+파이썬으로 빅데이터 공부 정리 하는 깃허브 블로그

@@ -14,7 +14,7 @@ priority : 1.0
 ---
 {% include python-table-of-contents.html %}
 
-# 프로세스 마이닝 (Process Mining)이란?
+## 프로세스 마이닝 (Process Mining)이란?
 
 "프로세스 마이닝 (Process Mining)이 뭐야? 데이터 마이닝 같은거야?"
 
