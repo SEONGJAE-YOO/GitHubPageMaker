@@ -9,6 +9,7 @@ class: post-template
 subclass: 'post tag-python'
 author: SeongJae Yu
 sitemap :
+lastmod: 2021-08-19
 changefreq : daily
 priority : 1.0
 ---
