@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/built/images/logo-python.png
+cover:  assets/built/images/datamining.png
 navigation: True
 title: 프로세스 마이닝(Process Mining)이란?
 tags: [ProcessMining]  

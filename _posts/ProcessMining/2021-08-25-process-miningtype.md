@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/built/images/logo-python.png
+cover:  assets/built/images/datamining.png
 navigation: True
 title: 프로세스 마이닝의 종류(유형)
 tags: [ProcessMining]  
