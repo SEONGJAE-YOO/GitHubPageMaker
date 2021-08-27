@@ -14,6 +14,8 @@ priority : 1.0
 ---
 {% include python-table-of-contents.html %}
 
+[Google](http://www.google.com/)
+
 ### 학습목표
 1. requests 모듈 사용하여 http request/response 확인하기
 
