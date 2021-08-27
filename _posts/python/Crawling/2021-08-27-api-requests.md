@@ -1,6 +1,6 @@
 ---
 layout: page
-current: page
+current: post
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: API의 활용 - 01.requests 모듈 사용하기
