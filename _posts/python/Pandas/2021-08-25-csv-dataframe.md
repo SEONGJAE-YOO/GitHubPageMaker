@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 샘플 csv 데이터로 DataFrame 데이터 생성하기

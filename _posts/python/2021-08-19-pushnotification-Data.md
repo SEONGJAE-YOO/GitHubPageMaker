@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 데이터 기반으로 의사결정하기-푸쉬 노티피케이션 타임

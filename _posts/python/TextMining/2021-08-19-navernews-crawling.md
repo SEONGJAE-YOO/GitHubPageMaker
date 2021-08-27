@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 네이버 뉴스 데이터 가져오기

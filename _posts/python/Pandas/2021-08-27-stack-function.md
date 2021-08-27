@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: stack, unstack 함수의 이해 및 활용하기

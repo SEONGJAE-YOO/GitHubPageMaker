@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 숫자 데이터의 범주형 데이터화

@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/datamining.png
 navigation: True
 title: 프로세스 마이닝(Process Mining)이란?

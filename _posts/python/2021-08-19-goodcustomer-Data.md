@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 우수고객 선별하기(가장 소비를 많이 한 고객),고객 코호트 분석

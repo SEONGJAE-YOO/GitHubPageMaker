@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: beautifulsoup 모듈 - 02.beautifulsoup 모듈 사용하기

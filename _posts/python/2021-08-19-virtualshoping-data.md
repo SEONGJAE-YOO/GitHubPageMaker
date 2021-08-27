@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 가상 쇼핑몰 고객 주문 데이터(컬럼,로우) 확인하기

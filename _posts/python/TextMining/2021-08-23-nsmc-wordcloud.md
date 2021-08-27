@@ -1,6 +1,6 @@
 ---
-layout: post
-current: post
+layout: page
+current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: NSMC 정제 - wordcloud 와 histogram으로 단어 분포 파악하기
