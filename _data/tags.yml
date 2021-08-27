@@ -1,7 +1,7 @@
-Big Data :
-  name: Big Data
+ProcessMining :
+  name: ProcessMining
   description: False
-  cover: assets/built/images/author-logo.jpg
+  cover: assets/built/images/datamining.png
 python :
   name: python
   description: False
