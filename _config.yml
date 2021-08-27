@@ -107,6 +107,7 @@ plugins: [jekyll-paginate, jekyll-gist, jekyll-sitemap, jekyll-feed]
 #
 #gems:
 #  - jekyll-feed
+RSS: false
 
 
 #feed:
