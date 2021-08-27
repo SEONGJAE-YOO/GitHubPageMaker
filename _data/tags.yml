@@ -1,5 +1,5 @@
 ProcessMining :
-  name: ProcessMining
+  name: processmining
   description: False
   cover: assets/built/images/datamining.png
 python :

@@ -4,9 +4,9 @@ current: post
 cover:  assets/built/images/datamining.png
 navigation: True
 title: 프로세스 마이닝(Process Mining)이란?
-tags: [ProcessMining]  
+tags: [processmining]  
 class: post-template
-subclass: 'post tag-ProcessMining'
+subclass: 'post tag-processmining'
 author: SeongJae Yu  
 sitemap :
 changefreq : daily

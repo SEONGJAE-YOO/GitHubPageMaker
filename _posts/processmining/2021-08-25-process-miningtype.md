@@ -4,9 +4,9 @@ current: post
 cover:  assets/built/images/datamining.png
 navigation: True
 title: 프로세스 마이닝의 종류(유형)
-tags: [ProcessMining]  
+tags: [processmining]  
 class: post-template
-subclass: 'post tag-ProcessMining'
+subclass: 'post tag-processmining'
 author: SeongJae Yu  
 sitemap :
 changefreq : daily
