@@ -104,12 +104,13 @@ permalink: /:title
 plugins: [jekyll-paginate, jekyll-gist, jekyll-sitemap, jekyll-feed]
 
 
+#
+#gems:
+#  - jekyll-feed
 
-#gems: [jekyll-sitemap]
 
-
-feed:
-  path: atom.xml
+#feed:
+#  path: /feed.xml
 
 # Travis-CI 설정입니다.
 safe: False
