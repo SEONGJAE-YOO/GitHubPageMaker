@@ -109,7 +109,7 @@ plugins: [jekyll-paginate, jekyll-gist, jekyll-sitemap, jekyll-feed]
 
 
 feed:
-  path: ./feed.xml
+  path: atom.xml
 
 # Travis-CI 설정입니다.
 safe: False
