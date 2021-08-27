@@ -7,10 +7,12 @@ title: 고객 데이터 분석 프로젝트
 tags: [python]
 class: post-template
 subclass: 'post tag-python'
-author: SeongJae Yu 
-sitemap :
-changefreq : daily
-priority : 1.0
+author: SeongJae Yu
+sitemap:
+lastmod: 2021-08-19
+priority: 0.7
+changefreq: 'monthly'
+exclude: 'yes'
 ---
 {% include python-table-of-contents.html %}
  

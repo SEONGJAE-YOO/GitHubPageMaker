@@ -8,9 +8,11 @@ tags: [processmining]
 class: post-template
 subclass: 'post tag-processmining'
 author: SeongJae Yu  
-sitemap :
-changefreq : daily
-priority : 1.0
+sitemap:
+lastmod: 2021-08-25
+priority: 0.7
+changefreq: 'monthly'
+exclude: 'yes'
 ---
 {% include python-table-of-contents.html %}
 

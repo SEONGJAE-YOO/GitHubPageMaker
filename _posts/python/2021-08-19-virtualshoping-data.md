@@ -8,10 +8,11 @@ tags: [python]
 class: post-template
 subclass: 'post tag-python'
 author: SeongJae Yu
-sitemap :
+sitemap:
 lastmod: 2021-08-19
-changefreq : daily
-priority : 1.0
+priority: 0.7
+changefreq: 'monthly'
+exclude: 'yes'
 ---
 {% include python-table-of-contents.html %}
 
