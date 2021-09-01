@@ -18,7 +18,6 @@ layout: null
     {% if post.sitemap.changefreq == null %}
     <changefreq>monthly</changefreq>
     {% else %}
-    <changefreq>{{ post.sitemap.changefreq }}</changefreq>
     {% endif %}
 
     {% if post.sitemap.priority == null %}
