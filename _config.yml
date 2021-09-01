@@ -101,7 +101,7 @@ permalink: /:title
 # 이 값을 바꾸면 작성한 포스트의 저장위치나 파일이름이 변경된다.
 
 # gems and other configs
-plugins: [jekyll-paginate, jekyll-gist, jekyll-sitemap, jekyll-feed,jekyll-seo-tag]
+plugins: [jekyll-paginate, jekyll-gist, jekyll-sitemap, jekyll-feed]
 
 
 #
