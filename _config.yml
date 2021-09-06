@@ -141,12 +141,12 @@ destination: ./output/
 exclude:
   - README.md
   - Rakefile
-  - Gemfile
-  - Gemfile.lock
+  #- Gemfile
+  #- Gemfile.lock
   - changelog.md
   - "*.Rmd"
   - vendor
-  - .travis.yml
+ # - .travis.yml
   - node_modules
   - assets/css
   - assets/images
@@ -154,5 +154,4 @@ exclude:
   - _posts/et-cetera
   - _posts/typescript
   - _posts/iot
-  - _posts/r
   - _posts/economy
