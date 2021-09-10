@@ -11,7 +11,7 @@ subclass: 'post tag-rprogramming'
 author: SeongJae Yu
 sitemap:  
 lastmod: 2021-09-10
-priority: 0.7  
+priority: 0.7    
 changefreq: 'monthly'
 exclude: 'yes'
 ---
