@@ -1,5 +1,5 @@
 ---
-date: 2021-09-10 15:23:00
+date: 2021-09-06 15:23:00
 layout: page
 current: page
 cover:  assets/built/images/R-logo.png
@@ -9,6 +9,11 @@ tags: [rprogramming]
 class: post-template
 subclass: 'post tag-rprogramming'
 author: SeongJae Yu
+sitemap:  
+lastmod: 2021-09-06
+priority: 0.7  
+changefreq: 'monthly'
+exclude: 'yes'
 
 ---
 {% include python-table-of-contents.html %}
