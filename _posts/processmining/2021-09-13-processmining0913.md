@@ -116,3 +116,4 @@ with process mining, you get a process model from these data.
 
 
 
+### 출처 -https://www.youtube.com/watch?v=CxlrxhKaE4E (경희대 정재윤 교수님) 
