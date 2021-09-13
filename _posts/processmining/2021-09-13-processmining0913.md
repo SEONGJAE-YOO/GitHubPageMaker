@@ -29,7 +29,9 @@ process mining is the techniques of extracting knowledge from event logs
 
 ## it's BPM(business process management), but upside-down.
 process mining -> bottom-up fashion
+
 you don't need to have a model of your process to analyze it.
+
 with process mining, you get a process model from these data.
 
 ## business intelligence vs. process mining
