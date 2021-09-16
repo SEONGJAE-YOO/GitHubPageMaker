@@ -16,7 +16,7 @@ exclude: 'yes'
 ---
 {% include python-table-of-contents.html %} 
 
-
+  
 
  프로세스 마이닝- 비즈니스 프로세스 관리(BPM: Business Process Management) 기법들을 보완한다
  
