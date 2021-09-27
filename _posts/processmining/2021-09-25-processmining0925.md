@@ -18,7 +18,7 @@ exclude: 'yes'
 
 
 
-# 3. Exercise: Dining philosopers
+# 1. Exercise: Dining philosopers
 
 ![20210925_145615_3](./img/processmining/petrinet/20210925_145615_3.png)
 
@@ -33,4 +33,4 @@ exclude: 'yes'
 # 3. Model
 
 
-![20210925_161320_1](./img/processmining/petrinet/20210925_161320_1.png)
+![20210927_184719_1](./img/processmining/petrinet/20210927_184719_1.png)

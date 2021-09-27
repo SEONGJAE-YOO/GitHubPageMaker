@@ -3,7 +3,7 @@ layout: page
 current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
-title: 머신러닝 프로그래밍 3주차 응용하기 - factorial
+title: 머신러닝 프로그래밍 3주차 응용하기-factorial
 tags: [python]  
 class: post-template
 subclass: 'post tag-python'
