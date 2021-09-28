@@ -16,8 +16,7 @@ exclude: 'yes'
 ---
 {% include python-table-of-contents.html %} 
 
-
-1. XOR
+XOR
 연산은 입력값이 같지 않으면 1을 출력합니다. 이는 두 입력 중 하나만이 배타적으로 참일 경우에만 일어납니다. 이 연산은 더해서 mod 2 를 구하는 것의 결과와 동일합니다. 다음은 진리표입니다:
 
 0 XOR 0 = 0
