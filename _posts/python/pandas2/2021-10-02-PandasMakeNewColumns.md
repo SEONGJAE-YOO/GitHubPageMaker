@@ -12,7 +12,7 @@ sitemap:
 lastmod: 2021-10-02
 priority: 0.7  
 changefreq: 'monthly'
-exclude: 'yes'
+exclude: 'yes'  
 ---
 {% include python-table-of-contents.html %}
 
