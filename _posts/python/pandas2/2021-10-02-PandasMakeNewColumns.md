@@ -330,7 +330,7 @@ df.max(axis=0)
 
 
 ```python
-df.min(axis=0) # axis=0은 열기준/ axis=1은 행기준 
+df.min(axis=0) # axis=0은 index기준/ axis=1은 컬럼기준 
 ```
 
 
