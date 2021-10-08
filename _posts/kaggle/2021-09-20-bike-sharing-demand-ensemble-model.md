@@ -14,7 +14,7 @@ priority: 0.7
 changefreq: 'monthly'
 exclude: 'yes'
 ---
-{% include python-table-of-contents.html %}
+{% include bike-sharing-demand-table-of-contents.html %}
 
 # 1.scikit-learn algorithm
 ![20210919_010952_1](../../img/kaggle/bikesharingdemand/20210924_144528_1.png)
