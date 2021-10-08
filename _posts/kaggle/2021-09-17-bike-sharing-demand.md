@@ -4,9 +4,9 @@ current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 자전거 수요 예측 (캐글 머신러닝 탐색적 데이터 분석) 1
-tags: [python]  
+tags: [kaggle]  
 class: post-template
-subclass: 'post tag-python'
+subclass: 'post tag-kaggle'
 author: SeongJae Yu
 sitemap:
 lastmod: 2021-09-17
@@ -321,7 +321,7 @@ msno.matrix(train, figsize=(12,5))
 
 
 
-![output_8_1](./img/kaggle/bikesharingdemand/output_8_1.png)
+![output_8_1](../../img/kaggle/bikesharingdemand/output_8_1.png)
 
 
 
@@ -531,7 +531,7 @@ ax4.set(xlabel='hour', title="시간별 대여량")
 
 
 
-![output_11_1](./img/kaggle/bikesharingdemand/output_11_1.png)
+![output_11_1](../../img/kaggle/bikesharingdemand/output_11_1.png)
 
 
 
@@ -571,7 +571,7 @@ axes[1][1].set(xlabel='Working Day', ylabel='Count',title="근무일 여부에 �
 
 
 
-![output_13_1](./img/kaggle/bikesharingdemand/output_13_1.png)
+![output_13_1](../../img/kaggle/bikesharingdemand/output_13_1.png)
 
 
 
@@ -632,7 +632,7 @@ sns.pointplot(data=train, x="hour", y="count", hue="season", ax=ax5)
 
 
 
-![output_16_1](./img/kaggle/bikesharingdemand/output_16_1.png)
+![output_16_1](../../img/kaggle/bikesharingdemand/output_16_1.png)
 
 
 
@@ -685,7 +685,7 @@ sns.heatmap(corrMatt, mask=mask,vmax=.8, square=True,annot=True)
 
 
 
-![output_19_1](./img/kaggle/bikesharingdemand/output_19_1.png)
+![output_19_1](../../img/kaggle/bikesharingdemand/output_19_1.png)
 
 
 
@@ -713,7 +713,7 @@ sns.regplot(x="humidity", y="count", data=train,ax=ax3)
 
 
 
-![output_21_1](./img/kaggle/bikesharingdemand/output_21_1.png)
+![output_21_1](../../img/kaggle/bikesharingdemand/output_21_1.png)
 
 
 
@@ -875,13 +875,13 @@ sns.barplot(data=train, x="year_month", y="count", ax=ax3)
 
 
 
-![output_25_1](./img/kaggle/bikesharingdemand/output_25_1.png)
+![output_25_1](../../img/kaggle/bikesharingdemand/output_25_1.png)
 
 
 
 
 
-![output_25_2](./img/kaggle/bikesharingdemand/output_25_2.png)
+![output_25_2](../../img/kaggle/bikesharingdemand/output_25_2.png)
 
 
 
@@ -928,7 +928,7 @@ stats.probplot(np.log1p(trainWithoutOutliers["count"]), dist='norm', fit=True, p
 
 
 
-![output_29_1](./img/kaggle/bikesharingdemand/output_29_1.png)
+![output_29_1](../../img/kaggle/bikesharingdemand/output_29_1.png)
 
 
 

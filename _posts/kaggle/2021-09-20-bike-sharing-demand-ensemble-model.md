@@ -4,9 +4,9 @@ current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: 자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2
-tags: [python]  
+tags: [kaggle]  
 class: post-template
-subclass: 'post tag-python'
+subclass: 'post tag-kaggle'
 author: SeongJae Yu
 sitemap:
 lastmod: 2021-09-17
@@ -17,7 +17,7 @@ exclude: 'yes'
 {% include python-table-of-contents.html %}
 
 # 1.scikit-learn algorithm
-![20210919_010952_1](./img/kaggle/bikesharingdemand/20210924_144528_1.png)
+![20210919_010952_1](../../img/kaggle/bikesharingdemand/20210924_144528_1.png)
 
 scikit-learn이란 python을 대표하는 머신러닝 라이브러리이다. '사이킷런'이라고 부르기도 한다. scikit-learn은 오픈 소스로 공개되어 있으며, 개인, 비즈니스 관계없이 누구나 무료로 사용가능하다. scikit-learn은 현재도 활용하여 개발이 이루어지고 있으며, 인터넷 상에서 정보를 찾기에도 싶다. 많은 머신러닝 알고리즘이 구현되어 있는데, 어떤 알고리즘도 같은 방식으로 이용이 가능하다. 또, 샘플 데이터 셋(토이 데이터 셋)이 부속되어 있으므로, 설치하여 바로 기계 학습을 시험해볼 수 있다. 그러므로 초심자가 기계학습을 배우기 시작할 때 적합한 라이브러리라고 말한다.
 
@@ -43,11 +43,11 @@ scikit-learn을 사용한 프로그램은 기본적으로 아래의 구성이다
 
 
 # 2. RMSLE
-![20210919_010952_2](./img/kaggle/bikesharingdemand/20210924_144528_2.png)
+![20210919_010952_2](../../img/kaggle/bikesharingdemand/20210924_144528_2.png)
 
 # 3.Cross Validation 교차 검증
 
-![20210919_010952_3](./img/kaggle/bikesharingdemand/20210924_144528_3.png)
+![20210919_010952_3](../../img/kaggle/bikesharingdemand/20210924_144528_3.png)
 
 
 ```python
@@ -548,7 +548,7 @@ sns.countplot(data=test, x="windspeed", ax=axes[1])
 
 
 
-![output_12_1](./img/kaggle/bikesharingdemand/output_12_1.png)
+![output_12_1](../../img/kaggle/bikesharingdemand/output_12_1.png)
 
 
 
@@ -663,7 +663,7 @@ sns.countplot(data=train, x="windspeed", ax=ax1)
 
 
 
-![output_17_1](./img/kaggle/bikesharingdemand/output_17_1.png)
+![output_17_1](../../img/kaggle/bikesharingdemand/output_17_1.png)
 
 
 
@@ -1166,7 +1166,7 @@ ax2.set(title="test")
 
 
 
-![output_36_1](./img/kaggle/bikesharingdemand/output_36_1.png)
+![output_36_1](../../img/kaggle/bikesharingdemand/output_36_1.png)
 
 
 

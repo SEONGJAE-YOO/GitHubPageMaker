@@ -4,9 +4,9 @@ current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
 title: Bag of Words Meets Bags of Popcorn 캐글 
-tags: [python]  
+tags: [kaggle]  
 class: post-template
-subclass: 'post tag-python'
+subclass: 'post tag-kaggle'
 author: SeongJae Yu
 sitemap:
 lastmod: 2021-10-01
@@ -792,7 +792,7 @@ def displayWordCloud(data = None, backgroundcolor = 'white', width=800, height=6
 
 
 
-![output_41_0](./img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_41_0.png)
+![output_41_0](../../img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_41_0.png)
 
 
 
@@ -808,7 +808,7 @@ def displayWordCloud(data = None, backgroundcolor = 'white', width=800, height=6
 
 
 
-![output_42_0](./img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_42_0.png)
+![output_42_0](../../img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_42_0.png)
 
 
 
@@ -967,7 +967,7 @@ axes[1].set_title('리뷰별 고유한 단어 수 분포')
 
 
 
-![output_47_3](./img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_47_3.png)
+![output_47_3](../../img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_47_3.png)
 
 
 
@@ -2090,7 +2090,7 @@ sns.countplot(output['sentiment'], ax=axes[1])
 
 
 
-![output_73_2](./img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_73_2.png)
+![output_73_2](../../img/kaggle/Bag%20of%20Words%20Meets%20Bags%20of%20Popcorn/output_73_2.png)
 
 
 
