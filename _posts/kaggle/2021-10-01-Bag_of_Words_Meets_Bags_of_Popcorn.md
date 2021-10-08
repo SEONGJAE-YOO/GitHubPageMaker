@@ -2131,4 +2131,9 @@ print(310/578)
     0.527681660899654
     0.5121107266435986
     0.5363321799307958
-    
+
+
+# labeledTrainData.tsv, testData.tsv, unlabeledTrainData.tsv 데이터를 밑에 링크를 클릭하면 다운로드 가능합니다. 파일이 크다보니 깃허브에 올려지지 않아 구글 드라이브 링크 공유합니다
+
+[https://drive.google.com/drive/folders/1eVFhPNhAKnJLaruEh87XJ1P8nBKLhMGG?usp=sharing](https://drive.google.com/drive/folders/1eVFhPNhAKnJLaruEh87XJ1P8nBKLhMGG?usp=sharing)
+  
