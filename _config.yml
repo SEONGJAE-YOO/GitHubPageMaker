@@ -77,6 +77,8 @@ subscribers: True
 # 검색기능으로 대체하기 위해서
 # `_includes/subscribe-form.html` 파일의 수정이 필요합니다.
 
+
+
 twitter:
 facebook:
 # 만약 twitter와 facebook을 이용하면 username을 입력
@@ -155,3 +157,13 @@ exclude:
   - _posts/typescript
   - _posts/iot
   - _posts/economy
+
+
+tipue_search:
+  include:
+    pages: false
+    collections: []
+  exclude:
+    files: [search.html, index.html, tags.html]
+    categories: []
+    tags: []
