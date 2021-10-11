@@ -19,7 +19,8 @@ exclude: 'yes'
 # Explore The Taylor Swift Lyrics - NLP
 
 
-(https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums)[https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums]
+[https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums](https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums)
+  
 
 
 Taylor Swift Song Lyrics from all the albums
@@ -1225,7 +1226,7 @@ data['parsed'] = data.Clean_Lyrics.apply(nlp)
 ```python
 corpus = st.CorpusFromParsedDocuments(data, category_col='album', parsed_col='parsed').build()
 ```
-
+  
 
 ```python
 html = st.produce_scattertext_explorer(corpus,
