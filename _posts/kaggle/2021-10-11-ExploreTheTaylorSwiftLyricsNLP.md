@@ -14,7 +14,7 @@ priority: 0.7
 changefreq: 'monthly'
 exclude: 'yes'
 ---
-{% include python-table-of-contents.html %}
+{% include ExploreTheTaylorSwiftLyrics.html %}
 
 # Explore The Taylor Swift Lyrics - NLP
 
@@ -254,7 +254,7 @@ require(['plotly'], function(Plotly) {
 });
 }
 </script>
-
+  
 
 
     ['taylor_swift_lyrics.csv']
