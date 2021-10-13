@@ -3,13 +3,13 @@ layout: page
 current: page
 cover:  assets/built/images/logo-python.png
 navigation: True
-title: Inverse transformation 구현
+title: Inverse transformation 구현 (머신러닝 프로그래밍 과제)
 tags: [python]  
 class: post-template
 subclass: 'post tag-python'
 author: SeongJae Yu
 sitemap:
-lastmod: 2021-10-12
+lastmod: 2021-10-13
 priority: 0.7
 changefreq: 'monthly'
 exclude: 'yes'
@@ -162,7 +162,7 @@ https://m.blog.naver.com/choi_s_h/221730568009
 # matplotlib 한글 폰트 출력코드
 # 출처 : 데이터공방( https://kiddwannabe.blog.me)
 
-import matplotlib
+import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
 import platform
 
@@ -176,7 +176,7 @@ try :
         rc('font', family='AppleGothic')
 except : 
     pass
-matplotlib.rcParams['axes.unicode_minus'] = False   
+plt.rcParams['axes.unicode_minus'] = False   
 ```
 
 
@@ -367,6 +367,4 @@ plt.show()
 
 
 
-
 # 2021315615 (빅데이터응용학과) 유성재 
- 
