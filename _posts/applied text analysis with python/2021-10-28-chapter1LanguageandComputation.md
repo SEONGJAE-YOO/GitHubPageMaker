@@ -4,9 +4,9 @@ current: page
 cover:  assets/built/images/applied-text-analysis-with-python.png
 navigation: True
 title: applied text analysis with python - chapter 1 - Language and Computation
-tags: [applied text analysis with python]  
+tags: [appliedTextAnalysisWithPython]  
 class: post-template
-subclass: 'post tag-applied text analysis with python'
+subclass: 'post tag-appliedTextAnalysisWithPython'
 author: SeongJae Yu  
 sitemap:
 lastmod: 2021-10-28
