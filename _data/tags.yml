@@ -14,6 +14,10 @@ kaggle :
   name: kaggle
   description: False
   cover: assets/built/images/logo-python.png
+applied text analysis with python :
+  name: applied text analysis with python
+  description: False
+  cover: assets/built/images/applied-text-analysis-with-python.png
 
 
 
