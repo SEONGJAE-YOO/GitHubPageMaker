@@ -16,8 +16,8 @@ kaggle :
   cover: assets/built/images/logo-python.png
 appliedTextAnalysisWithPython :
   name: applied_Text_Analysis_With_Python
-  description: False
-  cover: assets/built/images/applied-text-analysis-with-python.png
+  description: appliedTextAnalysisWithPython 책 공부 정리
+  cover: assets/built/images/appliedText.png
 
 
 

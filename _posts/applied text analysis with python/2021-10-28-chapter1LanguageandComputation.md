@@ -1,7 +1,7 @@
 ---
 layout: page
 current: page
-cover:  assets/built/images/applied-text-analysis-with-python.png
+cover:  assets/built/images/appliedText.png
 navigation: True
 title: applied text analysis with python - chapter 1 - Language and Computation
 tags: [appliedTextAnalysisWithPython]  
@@ -9,7 +9,7 @@ class: post-template
 subclass: 'post tag-appliedTextAnalysisWithPython'
 author: SeongJae Yu  
 sitemap:
-lastmod: 2021-10-28
+lastmod: 2021-10-28  
 priority: 0.7
 changefreq: 'monthly'
 exclude: 'yes'
