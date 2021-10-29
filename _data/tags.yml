@@ -14,10 +14,14 @@ kaggle :
   name: kaggle
   description: False
   cover: assets/built/images/logo-python.png
-appliedTextAnalysisWithPython :
-  name: applied_Text_Analysis_With_Python
-  description: appliedTextAnalysisWithPython 책 공부 정리
-  cover: assets/built/images/appliedText.png
+book :
+  name: book
+  description: 책에서 공부한 내용 정리
+  cover: assets/built/images/book.png
+Udemy :
+  name: Udemy
+  description: Udemy 강의 정리
+  cover: assets/built/images/udemy.png
 
 
 
