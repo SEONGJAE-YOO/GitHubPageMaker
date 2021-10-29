@@ -4,9 +4,9 @@ current: page
 cover:  assets/built/images/udemy.png
 navigation: True
 title: Natural Language Processing (NLP) in Python with 8 Projects - Tokenization Basics
-tags: [Udemy]  
+tags: [udemy]  
 class: post-template
-subclass: 'post tag-Udemy'  
+subclass: 'post tag-udemy'  
 author: SeongJae Yu  
 sitemap:
 lastmod: 2021-10-29
