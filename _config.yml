@@ -158,12 +158,12 @@ exclude:
   - _posts/iot
   - _posts/economy
 
-
-tipue_search:
-  include:
-    pages: false
-    collections: []
-  exclude:
-    files: [search.html, index.html, tags.html]
-    categories: []
-    tags: []
+#
+#tipue_search:
+#  include:
+#    pages: false
+#    collections: []
+#  exclude:
+#    files: [search.html, index.html, tags.html]
+#    categories: []
+#    tags: []
