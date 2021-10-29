@@ -14,6 +14,8 @@ priority: 0.7
 changefreq: 'monthly'
 exclude: 'yes'
 ---
+{% include udemy.html %}
+
 
 # Stop Words
 
