@@ -3,7 +3,7 @@ layout: page
 current: page
 cover:  assets/built/images/udemy.png
 navigation: True
-title: Tokenization Basics
+title: Natural Language Processing (NLP) in Python with 8 Projects - Tokenization Basics
 tags: [Udemy]  
 class: post-template
 subclass: 'post tag-Udemy'  
