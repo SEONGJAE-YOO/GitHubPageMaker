@@ -1284,3 +1284,7 @@ print(classifier.predict(text4))
 ```python
 
 ```
+
+
+# spam.tsv 파일은 아래 링크를 클릭하면 보실 수 있습니다  
+# 링크 - [https://github.com/SEONGJAE-YOO/Natural-Language-Processing-NLP-in-Python-with-8-Projects/blob/main/data/spam.tsv](https://github.com/SEONGJAE-YOO/Natural-Language-Processing-NLP-in-Python-with-8-Projects/blob/main/data/spam.tsv)
