@@ -285,7 +285,7 @@ df.isna() # missing value 값 확인 하기(널값 확인)
       <td>False</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>4</th>  
       <td>False</td>
       <td>False</td>
       <td>False</td>
@@ -903,7 +903,8 @@ Decision Tree는 overfitting될 가능성이 높다는 약점을 가지고 있�
 
 # 참고사이트 - [https://chan-lab.tistory.com/27](https://chan-lab.tistory.com/27)
 
-
+# 내 블로그에서 참고 페이지 - [https://seongjae-yoo.github.io/TfidfVectorizer](https://seongjae-yoo.github.io/TfidfVectorizer)
+  
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestClassifier
