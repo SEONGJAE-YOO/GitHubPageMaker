@@ -17,7 +17,7 @@ exclude: 'yes'
 {% include udemy.html %}
 
 ## Text summarization
-
+   
 
 ```python
 text = """ Maria Sharapova has basically no friends as tennis players on the WTA Tour. The Russian player has no problems in openly speaking about it and in a recent interview she said: ‘I don’t really hide any feelings too much.
