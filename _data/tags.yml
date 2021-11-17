@@ -22,7 +22,10 @@ udemy :
   name: udemy
   description: udemy 강의 정리
   cover: assets/built/images/udemy.png
-
+thesis :
+  name: thesis
+  description: 논문 공부 한 내용 정리
+  cover: assets/built/images/book.png
 
 
 
