@@ -7,7 +7,7 @@ title: JSON Support for the XES Event Log Standard - INTRODUCTION
 tags: [thesis]  
 class: post-template
 subclass: 'post tag-thesis'  
-author: SeongJae Yu  
+author: SeongJae Yu    
 sitemap:
 lastmod: 2021-11-17
 priority: 0.7
