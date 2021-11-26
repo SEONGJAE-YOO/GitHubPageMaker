@@ -10,6 +10,10 @@ python :
   name: python
   description: False
   cover: assets/built/images/logo-python.png
+Algorithm :
+  name: Algorithm
+  description: False
+  cover: assets/built/images/logo-python.png
 kaggle :
   name: kaggle
   description: False
