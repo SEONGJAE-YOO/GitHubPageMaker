@@ -574,7 +574,7 @@ Image("C://Users/MyCom/jupyter-tutorial/Natural Language Processing (NLP) in Pyt
 
 
 
-CNN은 그림 3과 같이 합성곱 계층 (convolutional layer)과 풀링 계층 (pooling layer)이라고 하는 새로운 층을 fully-connected 계층 이전에 추가함으로써 원본 이미지에 필터링 기법을 적용한 뒤에 필터링된 이미에 대해 분류 연산이 수행되도록 구성된다.
+CNN은 그림 3과 같이 합성곱 계층 (convolutional layer)과 풀링 계층 (pooling layer)이라고 하는 새로운 층을 fully-connected 계층 이전에 추가함으로써 원본 이미지에 필터링 기법을 적용한 뒤에 필터링된 이미지에 대해 분류 연산이 수행되도록 구성된다.
 
 
 ```python
