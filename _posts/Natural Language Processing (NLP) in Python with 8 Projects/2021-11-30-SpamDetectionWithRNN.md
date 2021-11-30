@@ -524,3 +524,5 @@ plt.show()
 ![output_30_0](./img/udemy/spamdetectionRNN/output_30_0.png)
     
 
+# 위코드에서 사용한 spam2.csv 파일은 아래 링크를 클릭하시면 보실 수 있습니다 
+# [https://github.com/SEONGJAE-YOO/Natural-Language-Processing-NLP-in-Python-with-8-Projects/blob/main/data/spam2.csv](https://github.com/SEONGJAE-YOO/Natural-Language-Processing-NLP-in-Python-with-8-Projects/blob/main/data/spam2.csv)
