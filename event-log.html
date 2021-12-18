@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>이벤트 로그(event log)란?</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+
+    <!-- custom.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- 웹폰트 추가 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+
+    <!-- syntax.css 추가 -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+
+
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="SeongJae Yu 블로그" />
+<link rel="shortcut icon" href="https://SEONGJAE-YOO.github.io/assets/built/images/favicon.jpg" type="image/png" />
+<link rel="canonical" href="https://SEONGJAE-YOO.github.io/event-log" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+ <!--title below is coming from _includes/dynamic_title-->
+<meta property="og:site_name" content="Big Data" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="이벤트 로그(event log)란?" />
+<meta property="og:description" content="SeongJae Yu 블로그" />
+<meta property="og:url" content="https://SEONGJAE-YOO.github.io/event-log" />
+<meta property="og:image" content="https://SEONGJAE-YOO.github.io/assets/built/images/datamining.png" />
+<meta property="article:publisher" content="https://www.facebook.com/" />
+<meta property="article:tag" content="Processmining" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="이벤트 로그(event log)란?" />
+<meta name="twitter:description" content="SeongJae Yu 블로그" />
+<meta name="twitter:url" content="https://SEONGJAE-YOO.github.io/" />
+<meta name="twitter:image" content="https://SEONGJAE-YOO.github.io/assets/built/images/datamining.png" />
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="Big Data" />
+<meta name="twitter:label2" content="Filed under" />
+<meta name="twitter:data2" content="Processmining" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="666" />
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Website",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Big Data",
+            "logo": "https://SEONGJAE-YOO.github.io/"
+        },
+        "url": "https://SEONGJAE-YOO.github.io/event-log",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://SEONGJAE-YOO.github.io/assets/built/images/datamining.png",
+            "width": 2000,
+            "height": 666
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://SEONGJAE-YOO.github.io/event-log"
+        },
+        "description": "SeongJae Yu 블로그"
+    }
+</script>
+
+<!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+<script type="text/javascript">
+ghost.init({
+    clientId: "ghost-frontend",
+    clientSecret: "f84a07a72b17"
+});
+</script> -->
+
+<meta name="generator" content="Jekyll 3.6.2" />
+<link rel="alternate" type="application/rss+xml" title="이벤트 로그(event log)란?" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- < default -->
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<!-- The big featured header, it uses blog cover image as a BG if available -->
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://SEONGJAE-YOO.github.io/">Big Data</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="https://codingstorylove.github.io/about/#page-title">About blog</a></li>
+    <li class="nav-rprogramming" role="menuitem"><a href="/tag/rprogramming/">R</a></li>
+    <li class="nav-processmining" role="menuitem"><a href="/tag/processmining/">Processmining</a></li>
+    <li class="nav-python" role="menuitem"><a href="/tag/python/">Python</a></li>
+    <li class="nav-Algorithm" role="menuitem"><a href="https://codingstorylove.github.io/">Algorithm</a></li>
+    <li class="nav-kaggle" role="menuitem"><a href="/tag/kaggle">kaggle</a></li>
+    <li class="nav-book" role="menuitem"><a href="/tag/book">book</a></li>
+    <li class="nav-udemy" role="menuitem"><a href="/tag/udemy">udemy</a></li>
+    <li class="nav-thesis" role="menuitem"><a href="/tag/thesis">thesis</a></li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/archive.html">All Posts</a>
+    </li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/author_archive.html">Tag별 Posts</a>
+    </li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Search</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-processmining post tag-processmining ">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">이벤트 로그(event log)란?</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/built/images/datamining.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <p><span class="table-of-contents-list"></span>
+<!--<ul class="table-of-contents-list">--></p>
+
+<!--</ul>-->
+
+<h2 id="이벤트-로그event-log란">이벤트 로그(event log)란?</h2>
+
+<p>이벤트 로그란, 프로세스 마이닝의 가장 기본이 되는 데이터 형태이다. 프로세스 마이닝을 하기 위해서는 이벤트 로그가 반드시 있어야 하기 때문에, 현재 있는 데이터를 프로세스 마이닝에 활용하고 싶다면 이를 이벤트 로그 형태로 바꾸어 주는 것이 필수적이다. 그렇다면, 이벤트 로그란 무엇일까?</p>
+
+<h2 id="이벤트-로그의-필수적인-요소">이벤트 로그의 필수적인 요소</h2>
+
+<p><img src="./img/processmining/20210825_154912_1.png" alt="20210825_154912_1" /></p>
+
+<p>이벤트 로그에는 필수적인 요소가 세 가지 있다. 케이스 아이디 (Case ID), 액티비티 (Activity), 타임스탬프 (Timestamp)가 바로 그것이다.
+예를 들어서, 위의 표처럼 병원에서 환자들의 프로세스가 있다고 하자. 여기에서 환자 5781은 X-ray를 찍고 (make X-ray), CT 촬영을 하고 (CT scan), 병원비를 지불하였고 (handle payment), 환자 5833은 피검사를 한 후 (blood test) 수술을 한다 (surgery). 이렇게 병원 안에서도 수많은 환자들이 각자 다른 일을 하고 병원에서 나갈 것이다. 이러한 각각의 환자 하나하나를 케이스(Case)라고 한다. 각 케이스들은 여러 줄의 데이터를 가질 수 있는데, 이 데이터 한 줄 한 줄, 그러니까 각 프로세스의 과정 하나하나를 이벤트(event)라고 한다. 즉, 이벤트가 모여 하나의 케이스가 되고, 이 케이스들이 모여 이벤트 로그가 되는 것이다.
+각각의 케이스, 위 표의 경우에는 환자 하나하나를 구별해주는 고유한 값 (이 경우에는 5781, 5833 등)을 케이스 아이디 (Case ID)라고 한다. 다음으로, 이 환자들이 하는 X-ray 찍기, CT 촬영 하기, 병원비 지불 등의 행동들을 액티비티(activity)라고 한다. 그리고 환자들이 행동을 한 시각을 기록한 것을 타임스탬프(timestamp)라고 한다. 즉, 위 예시 로그에서는 patient 컬럼이 Case ID, activity 컬럼이 activity, timestamp 컬럼이 timestamp인 것이다. 이벤트 로그에는 이  Case ID, activity, timestamp가 필수적으로 포함되어야 한다.</p>
+
+<h2 id="이벤트-로그의-추가적인-요소">이벤트 로그의 추가적인 요소</h2>
+<p>위 세 가지의 필수적인 요소 외에도 이벤트 로그에 포함될 수 있는 요소들이 몇 가지 있다. 첫 번째 요소는 리소스(resource)다. 리소스는 보통 해당 작업을 처리한 사람 (위 표의 경우에는 해당 일을 담당한 의사, 직원. doctor 컬럼)이나 부서, 기계 등을 의미한다. 두 번째 요소로는 Transactional information이 있다. 이는 액티비티가 시작되었는지, 종료되었는지, 계획되었는지 등의 정보를 표시하는 것이다. 예를 들어, 하나의 blood test 액티비티가 있더라도 이를 계획한 시각, 시작한 시각, 종료한 시각은 모두 다를 것이다. 이들을 각각 schedule, start, complete 등으로 표시한 컬럼을 transactional information이라고 한다. 나머지 요소는 other data이다. 이들은 각 케이스나 이벤트의 정보를 뜻하는 것으로, 위 표의 경우에는 age, cost 등의 컬럼들이 포함될 수 있다.</p>
+
+<h2 id="이벤트-로그의-표시">이벤트 로그의 표시</h2>
+<p>이벤트 로그는 주로 이러한 형태로 표시된다.</p>
+
+<p><img src="./img/processmining/20210825_154912_2.png" alt="20210825_154912_2" /></p>
+
+<p>여기에서 &lt;&gt;는 케이스 내에서 발생한 액티비티의 패턴을 말한다. 즉, &lt;a,b,c,d&gt;는 케이스 내에서 액티비티 a,b,c,d 순서대로 액티비티가 발생했다는 것이다. 이 하나의 패턴을 트레이스(trace)라고 한다. &lt;&gt; 위에 있는 숫자는 해당 패턴을 보이는 케이스가 일어난 횟수를 의미한다. 즉, 전체 이벤트 로그에서 &lt;a,b,c,d&gt; 패턴을 보인 케이스가 3개, &lt;a,c,b,d&gt; 패턴을 보인 케이스가 2개, &lt;a,e,d&gt; 패턴을 보인 케이스가 1개라는 뜻이다.</p>
+
+<p>이러한 이벤트 로그 형태의 데이터만 있으면 ProM, PM4Py, Disco 등의 툴을 활용하여 쉽게 프로세스 마이닝을 할 수 있다!!</p>
+
+<p>References</p>
+<ol>
+  <li>Data Sceicne in Action. Coursera. Prof. Wil van der Aalst.</li>
+</ol>
+
+
+            </section>
+
+        </article>
+
+    </div>
+</main>
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+<script>
+$(function() {
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+});
+</script>
+
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://SEONGJAE-YOO.github.io/">Big Data</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    
+                    
+                    <a href="https://seongjae-yoo.github.io/" target="_blank" rel="noopener">SeongJae Yu 블로그</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="#"></a>
+        <div class="subscribe-overlay-content">
+            
+            <h1 class="subscribe-overlay-title">Search Big Data</h1>
+            <p class="subscribe-overlay-description">
+                원하는 검색어를 입력하세요</p>
+            <span id="searchform" method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  />
+    <input class="location" type="hidden" name="location"  />
+    <input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" onkeyup="myFunc()"
+               id="searchtext" type="text" name="searchtext"
+               placeholder="Search..." />
+    </div>
+    <script type="text/javascript">
+        function myFunc() {
+            if(event.keyCode == 13) {
+                var url = encodeURIComponent($("#searchtext").val());
+                location.href = "/search.html?query=" + url;
+            }
+        }
+    </script>
+</span>
+        </div>
+    </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-xxxxxxxx-x', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

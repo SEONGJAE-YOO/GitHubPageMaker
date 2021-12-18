@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+
+    <!-- custom.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- 웹폰트 추가 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+
+    <!-- syntax.css 추가 -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+
+
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="SeongJae Yu 블로그" />
+<link rel="shortcut icon" href="https://SEONGJAE-YOO.github.io/assets/built/images/favicon.jpg" type="image/png" />
+<link rel="canonical" href="https://SEONGJAE-YOO.github.io/bike-sharing-demand-ensemble-model" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+ <!--title below is coming from _includes/dynamic_title-->
+<meta property="og:site_name" content="Big Data" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2" />
+<meta property="og:description" content="SeongJae Yu 블로그" />
+<meta property="og:url" content="https://SEONGJAE-YOO.github.io/bike-sharing-demand-ensemble-model" />
+<meta property="og:image" content="https://SEONGJAE-YOO.github.io/assets/built/images/logo-python.png" />
+<meta property="article:publisher" content="https://www.facebook.com/" />
+<meta property="article:tag" content="Kaggle" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2" />
+<meta name="twitter:description" content="SeongJae Yu 블로그" />
+<meta name="twitter:url" content="https://SEONGJAE-YOO.github.io/" />
+<meta name="twitter:image" content="https://SEONGJAE-YOO.github.io/assets/built/images/logo-python.png" />
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="Big Data" />
+<meta name="twitter:label2" content="Filed under" />
+<meta name="twitter:data2" content="Kaggle" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="666" />
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Website",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Big Data",
+            "logo": "https://SEONGJAE-YOO.github.io/"
+        },
+        "url": "https://SEONGJAE-YOO.github.io/bike-sharing-demand-ensemble-model",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://SEONGJAE-YOO.github.io/assets/built/images/logo-python.png",
+            "width": 2000,
+            "height": 666
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://SEONGJAE-YOO.github.io/bike-sharing-demand-ensemble-model"
+        },
+        "description": "SeongJae Yu 블로그"
+    }
+</script>
+
+<!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+<script type="text/javascript">
+ghost.init({
+    clientId: "ghost-frontend",
+    clientSecret: "f84a07a72b17"
+});
+</script> -->
+
+<meta name="generator" content="Jekyll 3.6.2" />
+<link rel="alternate" type="application/rss+xml" title="자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- < default -->
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<!-- The big featured header, it uses blog cover image as a BG if available -->
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://SEONGJAE-YOO.github.io/">Big Data</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="https://codingstorylove.github.io/about/#page-title">About blog</a></li>
+    <li class="nav-rprogramming" role="menuitem"><a href="/tag/rprogramming/">R</a></li>
+    <li class="nav-processmining" role="menuitem"><a href="/tag/processmining/">Processmining</a></li>
+    <li class="nav-python" role="menuitem"><a href="/tag/python/">Python</a></li>
+    <li class="nav-Algorithm" role="menuitem"><a href="https://codingstorylove.github.io/">Algorithm</a></li>
+    <li class="nav-kaggle" role="menuitem"><a href="/tag/kaggle">kaggle</a></li>
+    <li class="nav-book" role="menuitem"><a href="/tag/book">book</a></li>
+    <li class="nav-udemy" role="menuitem"><a href="/tag/udemy">udemy</a></li>
+    <li class="nav-thesis" role="menuitem"><a href="/tag/thesis">thesis</a></li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/archive.html">All Posts</a>
+    </li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/author_archive.html">Tag별 Posts</a>
+    </li>
+</ul>
+
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Search</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-kaggle post tag-kaggle ">
+
+            <header class="post-full-header">
+                <h1 class="post-full-title">자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2</h1>
+            </header>
+
+            
+            <figure class="post-full-image" style="background-image: url(/assets/built/images/logo-python.png)">
+            </figure>
+            
+
+            <section class="post-full-content">
+                <p><span class="table-of-contents-list">자전거 수요 예측</span></p>
+<ul class="table-of-contents-list">
+    <li><a href="https://seongjae-yoo.github.io/bike-sharing-demand">자전거 수요 예측 (캐글 머신러닝 탐색적 데이터 분석) 1</a></li>
+    <li><a href="https://seongjae-yoo.github.io/bike-sharing-demand-ensemble-model">자전거 수요 예측 (랜덤 포레스트 활용하여 예측) 2</a></li>
+</ul>
+
+<h1 id="1scikit-learn-algorithm">1.scikit-learn algorithm</h1>
+<p><img src="../../img/kaggle/bikesharingdemand/20210924_144528_1.png" alt="20210919_010952_1" /></p>
+
+<p>scikit-learn이란 python을 대표하는 머신러닝 라이브러리이다. ‘사이킷런’이라고 부르기도 한다. scikit-learn은 오픈 소스로 공개되어 있으며, 개인, 비즈니스 관계없이 누구나 무료로 사용가능하다. scikit-learn은 현재도 활용하여 개발이 이루어지고 있으며, 인터넷 상에서 정보를 찾기에도 싶다. 많은 머신러닝 알고리즘이 구현되어 있는데, 어떤 알고리즘도 같은 방식으로 이용이 가능하다. 또, 샘플 데이터 셋(토이 데이터 셋)이 부속되어 있으므로, 설치하여 바로 기계 학습을 시험해볼 수 있다. 그러므로 초심자가 기계학습을 배우기 시작할 때 적합한 라이브러리라고 말한다.</p>
+
+<p>scikit-learn을 사용한 프로그램은 기본적으로 아래의 구성이다.</p>
+
+<p>​</p>
+
+<p>1) 라이브러리 임포트</p>
+
+<p>2) 학습 데이터나 테스트 데이터 준비</p>
+
+<p>3) 알고리즘 지정과 학습 실행</p>
+
+<p>4) 테스트 데이터로 테스트</p>
+
+<p>5) 필요에 따라 정밀도 등을 시각화</p>
+
+<h1 id="2-rmsle">2. RMSLE</h1>
+<p><img src="../../img/kaggle/bikesharingdemand/20210924_144528_2.png" alt="20210919_010952_2" /></p>
+
+<h1 id="3cross-validation-교차-검증">3.Cross Validation 교차 검증</h1>
+
+<p><img src="../../img/kaggle/bikesharingdemand/20210924_144528_3.png" alt="20210919_010952_3" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="n">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="c1"># 노트북 안에 그래프를 그리기 위해
+</span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="c1"># 그래프에서 격자로 숫자 범위가 눈에 잘 띄도록 ggplot 스타일을 사용
+</span><span class="n">plt</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">use</span><span class="p">(</span><span class="s">'ggplot'</span><span class="p">)</span>
+
+<span class="c1"># 그래프에서 마이너스 폰트 깨지는 문제에 대한 대처
+</span><span class="n">mpl</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'axes.unicode_minus'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="p">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s">'ignore'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data/train.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">])</span>
+<span class="n">train</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10886, 12)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data/test.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">])</span>
+<span class="n">test</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6493, 9)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 전체적인 액셀 데이터 확인하기
+</span><span class="n">display</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>season</th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>weather</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>humidity</th>
+      <th>windspeed</th>
+      <th>casual</th>
+      <th>registered</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2011-01-01 00:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.84</td>
+      <td>14.395</td>
+      <td>81</td>
+      <td>0.0000</td>
+      <td>3</td>
+      <td>13</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011-01-01 01:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.02</td>
+      <td>13.635</td>
+      <td>80</td>
+      <td>0.0000</td>
+      <td>8</td>
+      <td>32</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-01-01 02:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.02</td>
+      <td>13.635</td>
+      <td>80</td>
+      <td>0.0000</td>
+      <td>5</td>
+      <td>27</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-01-01 03:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.84</td>
+      <td>14.395</td>
+      <td>75</td>
+      <td>0.0000</td>
+      <td>3</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-01-01 04:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9.84</td>
+      <td>14.395</td>
+      <td>75</td>
+      <td>0.0000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10881</th>
+      <td>2012-12-19 19:00:00</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>15.58</td>
+      <td>19.695</td>
+      <td>50</td>
+      <td>26.0027</td>
+      <td>7</td>
+      <td>329</td>
+      <td>336</td>
+    </tr>
+    <tr>
+      <th>10882</th>
+      <td>2012-12-19 20:00:00</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>14.76</td>
+      <td>17.425</td>
+      <td>57</td>
+      <td>15.0013</td>
+      <td>10</td>
+      <td>231</td>
+      <td>241</td>
+    </tr>
+    <tr>
+      <th>10883</th>
+      <td>2012-12-19 21:00:00</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>13.94</td>
+      <td>15.910</td>
+      <td>61</td>
+      <td>15.0013</td>
+      <td>4</td>
+      <td>164</td>
+      <td>168</td>
+    </tr>
+    <tr>
+      <th>10884</th>
+      <td>2012-12-19 22:00:00</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>13.94</td>
+      <td>17.425</td>
+      <td>61</td>
+      <td>6.0032</td>
+      <td>12</td>
+      <td>117</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <th>10885</th>
+      <td>2012-12-19 23:00:00</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>13.12</td>
+      <td>16.665</td>
+      <td>66</td>
+      <td>8.9981</td>
+      <td>4</td>
+      <td>84</td>
+      <td>88</td>
+    </tr>
+  </tbody>
+</table>
+<p>10886 rows × 12 columns</p>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>season</th>
+      <th>holiday</th>
+      <th>workingday</th>
+      <th>weather</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>humidity</th>
+      <th>windspeed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2011-01-20 00:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>11.365</td>
+      <td>56</td>
+      <td>26.0027</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011-01-20 01:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>56</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-01-20 02:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>56</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-01-20 03:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>56</td>
+      <td>11.0014</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-01-20 04:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>56</td>
+      <td>11.0014</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6488</th>
+      <td>2012-12-31 19:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>60</td>
+      <td>11.0014</td>
+    </tr>
+    <tr>
+      <th>6489</th>
+      <td>2012-12-31 20:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>60</td>
+      <td>11.0014</td>
+    </tr>
+    <tr>
+      <th>6490</th>
+      <td>2012-12-31 21:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>60</td>
+      <td>11.0014</td>
+    </tr>
+    <tr>
+      <th>6491</th>
+      <td>2012-12-31 22:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>56</td>
+      <td>8.9981</td>
+    </tr>
+    <tr>
+      <th>6492</th>
+      <td>2012-12-31 23:00:00</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>65</td>
+      <td>8.9981</td>
+    </tr>
+  </tbody>
+</table>
+<p>6493 rows × 9 columns</p>
+</div>
+
+<h1 id="feature-engineering">Feature Engineering</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train</span><span class="p">[</span><span class="s">"year"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">year</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"month"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">month</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"day"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">day</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"hour"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">hour</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"minute"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">minute</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"second"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">second</span>
+<span class="n">train</span><span class="p">[</span><span class="s">"dayofweek"</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">dayofweek</span>
+<span class="n">train</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10886, 19)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span><span class="p">[</span><span class="s">"year"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">year</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"month"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">month</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"day"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">day</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"hour"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">hour</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"minute"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">minute</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"second"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">second</span>
+<span class="n">test</span><span class="p">[</span><span class="s">"dayofweek"</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s">"datetime"</span><span class="p">].</span><span class="n">dt</span><span class="p">.</span><span class="n">dayofweek</span>
+<span class="n">test</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6493, 16)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># widspeed 풍속에 0 값이 가장 많다. =&gt; 잘못 기록된 데이터를 고쳐 줄 필요가 있음
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">sca</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">'right'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nb">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s">'Count'</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s">"train windspeed"</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"windspeed"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">sca</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">'right'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nb">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s">'Count'</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s">"test windspeed"</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"windspeed"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;AxesSubplot:title={'center':'test windspeed'}, xlabel='windspeed', ylabel='count'&gt;
+</code></pre></div></div>
+
+<p><img src="../../img/kaggle/bikesharingdemand/output_12_1.png" alt="output_12_1" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 풍속의 0값에 특정 값을 넣어준다.
+# 평균을 구해 일괄적으로 넣어줄 수도 있지만, 예측의 정확도를 높이는 데 도움이 될것 같진 않다.
+# train.loc[train["windspeed"] == 0, "windspeed"] = train["windspeed"].mean()
+# test.loc[train["windspeed"] == 0, "windspeed"] = train["windspeed"].mean()
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1"># 풍속이 0인것과 아닌 것의 세트를 나누어 준다.
+</span><span class="n">trainWind0</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s">'windspeed'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">trainWindNot0</span> <span class="o">=</span> <span class="n">train</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s">'windspeed'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">trainWind0</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">trainWindNot0</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1313, 19)
+(9573, 19)
+</code></pre></div></div>
+
+<h1 id="4-랜덤-포레스트random-forest-활용하여-예측하기">4. 랜덤 포레스트(Random Forest) 활용하여 예측하기</h1>
+
+<p>랜덤 포레스트의 개념은 쉽습니다. 랜덤 포레스트의 포레스트는 숲(Forest)입니다. 결정 트리는 트리는 나무(Tree)입니다. 나무가 모여 숲을 이룹니다. 즉, 결정 트리(Decision Tree)가 모여 랜덤 포레스트(Random Forest)를 구성합니다. 결정 트리 하나만으로도 머신러닝을 할 수 있습니다. 하지만 결정 트리의 단점은 훈련 데이터에 오버피팅이 되는 경향이 있다는 것입니다. 여러 개의 결정 트리를 통해 랜덤 포레스트를 만들면 오버피팅 되는 단점을 해결할 수 있습니다.</p>
+
+<h2 id="원리">원리</h2>
+
+<p>랜덤 포레스트의 예를 들어 보겠습니다. 건강의 위험도를 예측하기 위해서는 많은 요소를 고려해야 합니다. 성별, 키, 몸무게, 지역, 운동량, 흡연유무, 음주 여부, 혈당, 근육량, 기초 대사량 등등등… 수많은 요소가 필요할 것입니다. 이렇게 수많은 요소(Feature)를 기반으로 건강의 위험도(Label)를 예측한다면 분명 오버피팅이 일어날 것입니다. 예를 들어 Feature가 30개라고 합시다. 30개의 Feature를 기반으로 하나의 결정 트리를 만든다면 트리의 가지가 많아질 것이고, 이는 오버피팅의 결과를 야기할 것입니다. 하지만 30개의 Feature 중 랜덤으로 5개의 Feature만 선택해서 하나의 결정 트리를 만들고, 또 30개 중 랜덤으로 5개의 Feature를 선택해서 또 다른 결정 트리를 만들고… 이렇게 계속 반복하여 여러 개의 결정 트리를 만들 수 있습니다. 결정 트리 하나마다 예측 값을 내놓겠죠. 여러 결정 트리들이 내린 예측 값들 중 가장 많이 나온 값을 최종 예측값으로 정합니다. 다수결의 원칙에 따르는 것입니다. 이렇게 의견을 통합하거나 여러 가지 결과를 합치는 방식을 앙상블(Ensemble)이라고 합니다. 즉, 하나의 거대한 (깊이가 깊은) 결정 트리를 만드는 것이 아니라 여러 개의 작은 결정 트리를 만드는 것입니다. 여러 개의 작은 결정 트리가 예측한 값들 중 가장 많은 값(분류일 경우) 혹은 평균값(회귀일 경우)을 최종 예측 값으로 정하는 것입니다. 문제를 풀 때도 한 명의 똑똑한 사람보다 100 명의 평범한 사람이 더 잘 푸는 원리입니다.</p>
+
+<h2 id="파라미터">파라미터</h2>
+
+<p>n_estimators: 랜덤 포레스트 안의 결정 트리 갯수</p>
+
+<p>n_estimators는 클수록 좋습니다. 결정 트리가 많을수록 더 깔끔한 Decision Boundary가 나오겠죠. 하지만 그만큼 메모리와 훈련 시간이 증가합니다.</p>
+
+<p>max_features: 무작위로 선택할 Feature의 개수</p>
+
+<p>max_features가 전체 Feature 개수와 같으면 전체 Feature 모두를 사용해 결정 트리를 만듭니다. boostrap 파라미터가 False이면 비복원 추출하기 때문에 그냥 전체 Feature를 사용해 트리를 만듭니다. 반면 bootstrap=True이면 전체 Feature에서 복원 추출해서 트리를 만듭니다. 단, bootstrap=True는 default 값입니다. max_features 값이 크면 랜덤 포레스트의 트리들이 매우 비슷해지고, 가장 두드러진 특성에 맞게 예측을 할 것입니다. max_features 값이 작으면 랜덤 포레스트의 트리들이 서로 매우 달라집니다. 오버피팅이 줄어드는 효과가 있겠죠. max_features는 일반적으로 Defalut 값을 씁니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 그래서 머신러닝으로 예측을 해서 풍속을 넣어주도록 한다.
+</span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="k">def</span> <span class="nf">predict_windspeed</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    
+    <span class="c1"># 풍속이 0인것과 아닌 것을 나누어 준다.
+</span>    <span class="n">dataWind0</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">'windspeed'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">dataWindNot0</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s">'windspeed'</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># 풍속을 예측할 피처를 선택한다.
+</span>    <span class="n">wCol</span> <span class="o">=</span> <span class="p">[</span><span class="s">"season"</span><span class="p">,</span> <span class="s">"weather"</span><span class="p">,</span> <span class="s">"humidity"</span><span class="p">,</span> <span class="s">"month"</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">,</span> <span class="s">"year"</span><span class="p">,</span> <span class="s">"atemp"</span><span class="p">]</span>
+
+    <span class="c1"># 풍속이 0이 아닌 데이터들의 타입을 스트링으로 바꿔준다.
+</span>    <span class="n">dataWindNot0</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataWindNot0</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">"str"</span><span class="p">)</span>
+
+    <span class="c1"># 랜덤포레스트 분류기를 사용한다.
+</span>    <span class="n">rfModel_wind</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+
+    <span class="c1"># wCol에 있는 피처의 값을 바탕으로 풍속을 학습시킨다.
+</span>    <span class="n">rfModel_wind</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">dataWindNot0</span><span class="p">[</span><span class="n">wCol</span><span class="p">],</span> <span class="n">dataWindNot0</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">])</span>
+
+    <span class="c1"># 학습한 값을 바탕으로 풍속이 0으로 기록 된 데이터의 풍속을 예측한다.
+</span>    <span class="n">wind0Values</span> <span class="o">=</span> <span class="n">rfModel_wind</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">dataWind0</span><span class="p">[</span><span class="n">wCol</span><span class="p">])</span>
+
+    <span class="c1"># 값을 다 예측 후 비교해 보기 위해
+</span>    <span class="c1"># 예측한 값을 넣어 줄 데이터 프레임을 새로 만든다.
+</span>    <span class="n">predictWind0</span> <span class="o">=</span> <span class="n">dataWind0</span>
+    <span class="n">predictWindNot0</span> <span class="o">=</span> <span class="n">dataWindNot0</span>
+
+    <span class="c1"># 값이 0으로 기록 된 풍속에 대해 예측한 값을 넣어준다.
+</span>    <span class="n">predictWind0</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">]</span> <span class="o">=</span> <span class="n">wind0Values</span>
+
+    <span class="c1"># dataWindNot0 0이 아닌 풍속이 있는 데이터프레임에 예측한 값이 있는 데이터프레임을 합쳐준다.
+</span>    <span class="n">data</span> <span class="o">=</span> <span class="n">predictWindNot0</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">predictWind0</span><span class="p">)</span>
+
+    <span class="c1"># 풍속의 데이터타입을 float으로 지정해 준다.
+</span>    <span class="n">data</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">"windspeed"</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">"float"</span><span class="p">)</span>
+
+    <span class="n">data</span><span class="p">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'index'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">data</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 0값을 조정한다.
+</span><span class="n">train</span> <span class="o">=</span> <span class="n">predict_windspeed</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="c1"># test = predict_windspeed(test)
+</span>
+<span class="c1"># widspeed 의 0값을 조정한 데이터를 시각화
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">sca</span><span class="p">(</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">'right'</span><span class="p">)</span>
+<span class="n">ax1</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s">'Count'</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s">"train windspeed"</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">"windspeed"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;AxesSubplot:title={'center':'train windspeed'}, xlabel='windspeed', ylabel='count'&gt;
+</code></pre></div></div>
+
+<p><img src="../../img/kaggle/bikesharingdemand/output_17_1.png" alt="output_17_1" /></p>
+
+<h1 id="feature-selection">Feature Selection</h1>
+<ul>
+  <li>신호와 잡음을 구분해야 한다.</li>
+  <li>피처가 많다고 해서 무조건 좋은 성능을 내지 않는다.</li>
+  <li>피처를 하나씩 추가하고 변경해 가면서 성능이 좋지 않은 피처는 제거하도록 한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 연속형 feature와 범주형 feature 
+# 연속형 feature = ["temp","humidity","windspeed","atemp"]
+# 범주형 feature의 type을 category로 변경 해 준다.
+</span><span class="n">categorical_feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"season"</span><span class="p">,</span><span class="s">"holiday"</span><span class="p">,</span><span class="s">"workingday"</span><span class="p">,</span><span class="s">"weather"</span><span class="p">,</span>
+                             <span class="s">"dayofweek"</span><span class="p">,</span><span class="s">"month"</span><span class="p">,</span><span class="s">"year"</span><span class="p">,</span><span class="s">"hour"</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">categorical_feature_names</span><span class="p">:</span>
+    <span class="n">train</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">var</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">"category"</span><span class="p">)</span>
+    <span class="n">test</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">var</span><span class="p">].</span><span class="n">astype</span><span class="p">(</span><span class="s">"category"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">"season"</span><span class="p">,</span> <span class="s">"weather"</span><span class="p">,</span> <span class="s">"temp"</span><span class="p">,</span> <span class="s">"atemp"</span><span class="p">,</span> <span class="s">"humidity"</span><span class="p">,</span> <span class="s">"windspeed"</span><span class="p">,</span>
+                 <span class="s">"year"</span><span class="p">,</span> <span class="s">"hour"</span><span class="p">,</span> <span class="s">"dayofweek"</span><span class="p">,</span> <span class="s">"holiday"</span><span class="p">,</span> <span class="s">"workingday"</span><span class="p">]</span>
+
+<span class="n">feature_names</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['season',
+ 'weather',
+ 'temp',
+ 'atemp',
+ 'humidity',
+ 'windspeed',
+ 'year',
+ 'hour',
+ 'dayofweek',
+ 'holiday',
+ 'workingday']
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">X_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10886, 11)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>weather</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>humidity</th>
+      <th>windspeed</th>
+      <th>year</th>
+      <th>hour</th>
+      <th>dayofweek</th>
+      <th>holiday</th>
+      <th>workingday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>9.84</td>
+      <td>12.880</td>
+      <td>75</td>
+      <td>6.0032</td>
+      <td>2011</td>
+      <td>5</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>15.58</td>
+      <td>19.695</td>
+      <td>76</td>
+      <td>16.9979</td>
+      <td>2011</td>
+      <td>10</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>14.76</td>
+      <td>16.665</td>
+      <td>81</td>
+      <td>19.0012</td>
+      <td>2011</td>
+      <td>11</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>17.22</td>
+      <td>21.210</td>
+      <td>77</td>
+      <td>19.0012</td>
+      <td>2011</td>
+      <td>12</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>2</td>
+      <td>18.86</td>
+      <td>22.725</td>
+      <td>72</td>
+      <td>19.9995</td>
+      <td>2011</td>
+      <td>13</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_train</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 10886 entries, 0 to 10885
+Data columns (total 11 columns):
+ #   Column      Non-Null Count  Dtype   
+---  ------      --------------  -----   
+ 0   season      10886 non-null  category
+ 1   weather     10886 non-null  category
+ 2   temp        10886 non-null  float64 
+ 3   atemp       10886 non-null  float64 
+ 4   humidity    10886 non-null  int64   
+ 5   windspeed   10886 non-null  float64 
+ 6   year        10886 non-null  category
+ 7   hour        10886 non-null  category
+ 8   dayofweek   10886 non-null  category
+ 9   holiday     10886 non-null  category
+ 10  workingday  10886 non-null  category
+dtypes: category(7), float64(3), int64(1)
+memory usage: 416.6 KB
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">X_test</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_test</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6493, 11)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>weather</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>humidity</th>
+      <th>windspeed</th>
+      <th>year</th>
+      <th>hour</th>
+      <th>dayofweek</th>
+      <th>holiday</th>
+      <th>workingday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>11.365</td>
+      <td>56</td>
+      <td>26.0027</td>
+      <td>2011</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>56</td>
+      <td>0.0000</td>
+      <td>2011</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>13.635</td>
+      <td>56</td>
+      <td>0.0000</td>
+      <td>2011</td>
+      <td>2</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>56</td>
+      <td>11.0014</td>
+      <td>2011</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>1</td>
+      <td>10.66</td>
+      <td>12.880</td>
+      <td>56</td>
+      <td>11.0014</td>
+      <td>2011</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X_test</span><span class="p">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6493 entries, 0 to 6492
+Data columns (total 11 columns):
+ #   Column      Non-Null Count  Dtype   
+---  ------      --------------  -----   
+ 0   season      6493 non-null   category
+ 1   weather     6493 non-null   category
+ 2   temp        6493 non-null   float64 
+ 3   atemp       6493 non-null   float64 
+ 4   humidity    6493 non-null   int64   
+ 5   windspeed   6493 non-null   float64 
+ 6   year        6493 non-null   category
+ 7   hour        6493 non-null   category
+ 8   dayofweek   6493 non-null   category
+ 9   holiday     6493 non-null   category
+ 10  workingday  6493 non-null   category
+dtypes: category(7), float64(3), int64(1)
+memory usage: 249.3 KB
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">label_name</span> <span class="o">=</span> <span class="s">"count"</span>
+
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="n">label_name</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">y_train</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">y_train</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10886,)
+
+
+
+
+
+0     1
+1    36
+2    56
+3    84
+4    94
+Name: count, dtype: int64
+</code></pre></div></div>
+
+<h1 id="rmsle">RMSLE</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+
+<span class="k">def</span> <span class="nf">rmsle</span><span class="p">(</span><span class="n">predicted_values</span><span class="p">,</span> <span class="n">actual_values</span><span class="p">):</span>
+    <span class="c1"># 넘파이로 배열 형태로 바꿔준다.
+</span>    <span class="n">predicted_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted_values</span><span class="p">)</span>
+    <span class="n">actual_values</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">actual_values</span><span class="p">)</span>
+    
+    <span class="c1"># 예측값과 실제 값에 1을 더하고 로그를 씌워준다.
+</span>    <span class="n">log_predict</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">predicted_values</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">log_actual</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">actual_values</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># 위에서 계산한 예측값에서 실제값을 빼주고 제곱을 해준다.
+</span>    <span class="n">difference</span> <span class="o">=</span> <span class="n">log_predict</span> <span class="o">-</span> <span class="n">log_actual</span>
+    <span class="c1"># difference = (log_predict - log_actual) ** 2
+</span>    <span class="n">difference</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span>
+    
+    <span class="c1"># 평균을 낸다.
+</span>    <span class="n">mean_difference</span> <span class="o">=</span> <span class="n">difference</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># 다시 루트를 씌운다.
+</span>    <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_difference</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">score</span>
+
+<span class="n">rmsle_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">rmsle</span><span class="p">)</span>
+<span class="n">rmsle_scorer</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make_scorer(rmsle)
+</code></pre></div></div>
+
+<h1 id="cross-validation-교차-검증">Cross Validation 교차 검증</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">k_fold</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="randomforest">RandomForest</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">max_depth_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                              <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">model</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RandomForestRegressor(n_jobs=-1, random_state=0)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">time</span> <span class="n">score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">k_fold</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">rmsle_scorer</span><span class="p">)</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">score</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="c1"># 0에 근접할수록 좋은 데이터
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Score= {0:.5f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">score</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Wall time: 13.1 s
+Score= 0.33083
+</code></pre></div></div>
+
+<h1 id="train">Train</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 학습시킴, 피팅(옷을 맞출 때 사용하는 피팅을 생각함) - 피처와 레이블을 넣어주면 알아서 학습을 함
+</span><span class="n">model</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RandomForestRegressor(n_jobs=-1, random_state=0)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 예측
+</span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6493,)
+
+
+
+
+
+array([ 12.74,   5.16,   3.98,   3.68,   3.3 ,   6.42,  38.32, 104.82,
+       236.59, 136.14])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 예측한 데이터를 시각화 해본다. 
+</span><span class="n">fig</span><span class="p">,(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">)</span><span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax1</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"train"</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax2</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"test"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Text(0.5, 1.0, 'test')]
+</code></pre></div></div>
+
+<p><img src="../../img/kaggle/bikesharingdemand/output_36_1.png" alt="output_36_1" /></p>
+
+<h1 id="submit">Submit</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">submission</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"data/sampleSubmission.csv"</span><span class="p">)</span>
+<span class="n">submission</span>
+
+<span class="n">submission</span><span class="p">[</span><span class="s">"count"</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">submission</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">submission</span><span class="p">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(6493, 2)
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>datetime</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2011-01-20 00:00:00</td>
+      <td>12.74</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011-01-20 01:00:00</td>
+      <td>5.16</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-01-20 02:00:00</td>
+      <td>3.98</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2011-01-20 03:00:00</td>
+      <td>3.68</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2011-01-20 04:00:00</td>
+      <td>3.30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">submission</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">"data/Score_{0:.5f}_submission.csv"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">score</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+            </section>
+
+        </article>
+
+    </div>
+</main>
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+<script>
+$(function() {
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+});
+</script>
+
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://SEONGJAE-YOO.github.io/">Big Data</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    
+                    
+                    <a href="https://seongjae-yoo.github.io/" target="_blank" rel="noopener">SeongJae Yu 블로그</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-overlay-close" href="#"></a>
+        <div class="subscribe-overlay-content">
+            
+            <h1 class="subscribe-overlay-title">Search Big Data</h1>
+            <p class="subscribe-overlay-description">
+                원하는 검색어를 입력하세요</p>
+            <span id="searchform" method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  />
+    <input class="location" type="hidden" name="location"  />
+    <input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" onkeyup="myFunc()"
+               id="searchtext" type="text" name="searchtext"
+               placeholder="Search..." />
+    </div>
+    <script type="text/javascript">
+        function myFunc() {
+            if(event.keyCode == 13) {
+                var url = encodeURIComponent($("#searchtext").val());
+                location.href = "/search.html?query=" + url;
+            }
+        }
+    </script>
+</span>
+        </div>
+    </div>
+    
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-xxxxxxxx-x', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>
